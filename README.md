@@ -21,21 +21,23 @@
    - Откройте файл конфигурации `App.config`, который находится в папке проекта `ChatHost`.
    - Найдите раздел, отвечающий за настройки TCP, и укажите правильный адрес и номер порта для поднятия сервера.
    - Пример конфигурации:
-     ```xml
-    <services>
-	<service name="wcfChat.ServiceChat" behaviorConfiguration="mexBeh">
-		<endpoint address="" binding="netTcpBinding" contract="wcfChat.IServiceChat"/>
-		
-		<endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
-		<host>
-			<baseAddresses>
-				<add baseAddress="http://localhost:8301" />
-				<add baseAddress="net.tcp://localhost:8302" />
-			</baseAddresses>
-		</host>
-	</service>
-    </services>
-     ```
+   ```xml
+   
+   <services>
+	   <service name="wcfChat.ServiceChat" behaviorConfiguration="mexBeh">
+		   <endpoint address="" binding="netTcpBinding" contract="wcfChat.IServiceChat"/>
+		      <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+		        <host>
+			         <baseAddresses>
+				        <add baseAddress="http://localhost:8301" />
+				        <add baseAddress="net.tcp://localhost:8302" />
+			         </baseAddresses>
+		       </host>
+	      </service>
+    </services> 
+   
+    ```
+     
 
 ### 2. Настройка клиентской части
 
@@ -45,17 +47,17 @@
    - Откройте файл конфигурации `App.config`, который находится в папке проекта `ChatClient`.
    - Убедитесь, что адрес и номер порта совпадают с теми, что указаны в конфигурации серверной части.
    - Пример конфигурации:
-     ```xml
-     <client>
-    <endpoint address="net.tcp://localhost:8302/" binding="netTcpBinding"
+   ```xml
+   <client>
+     <endpoint address="net.tcp://localhost:8302/" binding="netTcpBinding"
         bindingConfiguration="NetTcpBinding_IServiceChat" contract="ServiceChat.IServiceChat"
         name="NetTcpBinding_IServiceChat">
         <identity>
             <userPrincipalName value="DESKTOP-GD0O982\master" />
         </identity>
-    </endpoint>
-    </client>
-     ```
+     </endpoint>
+   </client>
+   ```
 
 2. **Запуск клиента**:
    - Соберите проект `ChatClient` и найдите скомпилированный файл `ChatClient.exe`.
